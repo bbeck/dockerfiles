@@ -8,11 +8,15 @@ RUN apt-get update &&                                              \
     rm -rf /var/lib/apt/lists/*
 
 ENV HOME=/home/slack
-RUN useradd --create-home --home-dir $HOME slack \
-      && gpasswd -a slack audio \
+
+# The group id 986 corresponds to the host's video group id.
+ENV VIDEO_GID=986
+
+RUN groupadd --gid $VIDEO_GID hostvideo \
+      && useradd --create-home --home-dir $HOME --uid 1000 slack \
+      && gpasswd -a slack hostvideo \
       && chown -R slack:slack $HOME
 
 WORKDIR $HOME
 USER slack
 
-ENTRYPOINT ["/usr/lib/slack/slack"]

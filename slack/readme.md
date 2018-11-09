@@ -31,6 +31,8 @@ docker run --rm                                                  \
   -e DISPLAY=unix${DISPLAY}                                      \
   -e PULSE_SERVER=/tmp/.pulseaudio-slack                         \
   --device /dev/dri                                              \
+  --device /dev/video0                                           \
+  --group-add video                                              \
   --ipc host                                                     \
 bbeck/slack
 ```
