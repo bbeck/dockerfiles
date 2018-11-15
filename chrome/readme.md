@@ -55,7 +55,7 @@ docker run --rm                                                        \
   --device /dev/video0                                                 \
   --ipc host                                                           \
 bbeck/chrome                                                           \
-  --user-data-dir=/home/chrome/.config/google-chrome
+  --user-data-dir=/home/chrome/.config/google-chrome $@
 ```
 
 [1]: https://github.com/jessfraz/dockerfiles/blob/master/chrome/stable/Dockerfile
